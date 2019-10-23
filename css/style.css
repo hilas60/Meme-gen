@@ -18,6 +18,10 @@ h1 {
     color: red;
 }
 
+img, button {
+    cursor: pointer;
+}
+
 .meme-gen {
     display: flex;
     flex-direction: row;
@@ -36,7 +40,6 @@ h1 {
 .top-txt-canvas-container {
     position: absolute;
     top: 20px;
-
 }
 
 .form-container {
@@ -47,4 +50,18 @@ h1 {
 input {
     height: 1.5rem;
     width: 10rem;
+}
+
+.image-container {
+    display: flex;
+
+}
+
+.image-gallery img {
+    height: 150px;
+    width: 150px;
+}
+
+.card {
+    margin: 10px;
 }

@@ -7,8 +7,21 @@ const gCtx = gCanvas.getContext('2d');
 
 
 function init() {
+    renderImages()
     resizeCanvas();
     createMeme()
+}
+
+function renderImages() {
+    let images = getImages();
+    let strHtmls = images.map(function(image){
+        return `<div class="card" data-id="${image.id}" onclick="onPickImage(this)">
+                    <img src="${image.url}">
+                </div>`
+    })
+    document.querySelector('.image-container').innerHTML = strHtmls.join('');
+    
+    
 }
 
 function resizeCanvas() {
@@ -18,14 +31,10 @@ function resizeCanvas() {
 }
 
 function createMeme() {
-    var imgUrl = getUrl();
+    var imgUrl = getImgUrl();
     loadAndDrawImage(imgUrl);
 }
 
-function getUrl() {
-    let imgUrl = getImg();
-    return imgUrl;
-}
 
 function loadAndDrawImage(url) {
     var image = new Image();
@@ -65,4 +74,12 @@ function onChangeTxt(input){
     changeTxt(txtIdx, txt);
     // drawTxt()
     createMeme();
+}
+
+function onPickImage(elImage){
+    let imgId = elImage.dataset.id;
+    changeImg(imgId);
+    createMeme();
+    console.log(imgId);
+    
 }

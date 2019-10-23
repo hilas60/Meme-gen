@@ -13,9 +13,11 @@ let gMeme = {
     ],
 }
 
-function getImg() {
+function getImgUrl() {
     let img = gImgs.find(function(img){
+        console.log('image Id:', img.id, 'selected img Id:', gMeme.selectedImgId );
         return img.id === gMeme.selectedImgId;
+        
     })
     return img.url;
 }
@@ -28,4 +30,15 @@ function getMemeTxt(){
 function changeTxt(txtsIdx, txt){
     gMeme.selectedTxtIdx = txtsIdx;
     gMeme.txts[txtsIdx].line = txt;
+}
+
+function changeImg(imgId){
+    gMeme.selectedImgId = +imgId;
+    console.log(gMeme);
+    
+}
+
+
+function getImages(){
+    return gImgs;
 }
