@@ -2,6 +2,9 @@
 
 const gCanvas = document.querySelector('#main-canvas');
 const gCtx = gCanvas.getContext('2d');
+// const gTopTxtCanvas = document.querySelector('#top-txt-canvas');
+// const gTopTxtCtx = gTopTxtCanvas.getContext('2d');
+
 
 function init() {
     resizeCanvas();
@@ -11,41 +14,55 @@ function init() {
 function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container');
     gCanvas.width = elContainer.offsetWidth
-    // console.log(gCanvas.width);
     gCanvas.height = elContainer.offsetHeight
-    // console.log(gCanvas.height);
 }
 
 function createMeme() {
-    drawImg();
-    // drawTxt();
-
+    var imgUrl = getUrl();
+    loadAndDrawImage(imgUrl);
 }
 
-function drawImg() {
+function getUrl() {
     let imgUrl = getImg();
-    loadAndDrawImage(imgUrl)
-    // drawTxt()
+    return imgUrl;
 }
 
 function loadAndDrawImage(url) {
     var image = new Image();
-    image.onload = function() {
+    image.onload = function () {
         gCanvas.width = image.width;
         gCanvas.height = image.height;
         gCtx.drawImage(image, 0, 0);
+        drawTxt();
     }
     image.src = url;
 }
 
 function drawTxt() {
-    gCanvas.font = "400px Impact"
-    gCtx.fillStyle = "red";
+    let userChoice = getMemeTxt();
+    let txt = userChoice.line
+    console.log(userChoice);
+    console.log(txt);
+    gCtx.font = '40px Impact';
+    gCtx.lineWidth = 2;
+    gCtx.fillStyle = 'white';
+    gCtx.fillText(txt, 100, 75);
+    gCtx.strokeStyle = 'black'
+    gCtx.strokeText(txt, 100, 75)
+    // gCtx.strokeText("Hello", 10, 50)
     // gCtx.textAlign = "center";
     // for top line -
-    gCtx.fillText("Hello", gCanvas.width / 2, 50);
-    gCtx.strokeText("Hello", 10, 50)
+    // gCtx.fillStyle = 'orange'
+    // gCtx.fillRect(0, 0, 100, 100)
     // for bottom line -
-    // gCanvas.strokeText("Hello", 10, 50)
+}
 
+function onChangeTxt(input){
+    var txtIdx;
+    if (input.id === 'top-txt') txtIdx = 0;
+    else if (input.id === 'bottom-txt') txtIdx = 1;
+    let txt = input.value;
+    changeTxt(txtIdx, txt);
+    // drawTxt()
+    createMeme();
 }

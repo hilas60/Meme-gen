@@ -18,12 +18,33 @@ h1 {
     color: red;
 }
 
-.canvas-container {
-    height: 80%;
-    width: 50%;
+.meme-gen {
+    display: flex;
+    flex-direction: row;
 }
 
-canvas {
-    border: 1px solid black;
+.canvas-container {
+    /* border: 1px solid black; */
     margin: 0;
+    /* flex: 1 */
+}
+
+.main-canvas-container {
+    position: relative;
+}
+
+.top-txt-canvas-container {
+    position: absolute;
+    top: 20px;
+
+}
+
+.form-container {
+    padding: 20px; 
+    /* flex: 1; */
+}
+
+input {
+    height: 1.5rem;
+    width: 10rem;
 }

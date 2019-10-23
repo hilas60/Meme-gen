@@ -19,3 +19,13 @@ function getImg() {
     })
     return img.url;
 }
+
+function getMemeTxt(){
+    let txtIdx = gMeme.selectedTxtIdx
+    return gMeme.txts[txtIdx]
+}
+
+function changeTxt(txtsIdx, txt){
+    gMeme.selectedTxtIdx = txtsIdx;
+    gMeme.txts[txtsIdx].line = txt;
+}
