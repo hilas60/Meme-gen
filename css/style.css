@@ -51,16 +51,21 @@ img, button {
 .canvas-container {
     /* border: 1px solid black; */
     margin: 0;
-    /* flex: 1 */
+    flex: 1;
+    position: relative;
 }
 
 .main-canvas-container {
-    position: relative;
+    position: absolute;
 }
 
 .top-txt-canvas-container {
     position: absolute;
-    top: 20px;
+    top: 10px;
+    right: 10px;
+    height: 30%;
+    width: 100%;
+    z-index: 3;
 }
 
 .meme-controls-container {
