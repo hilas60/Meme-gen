@@ -14,12 +14,33 @@ body {
     flex-direction: column;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
 h1 {
     color: red;
 }
 
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
 img, button {
     cursor: pointer;
+}
+
+.nav-bar {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-bar li {
+    padding: 10px;
 }
 
 .meme-gen {
@@ -42,7 +63,7 @@ img, button {
     top: 20px;
 }
 
-.form-container {
+.meme-controls-container {
     padding: 20px; 
     /* flex: 1; */
 }
@@ -65,3 +86,5 @@ input {
 .card {
     margin: 10px;
 }
+
+

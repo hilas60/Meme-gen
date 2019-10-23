@@ -1,5 +1,10 @@
 'use strict'
 
+const gFont = {
+    fontSize: 40,
+    fontFamily: 'Impact',
+}
+
 const gCanvas = document.querySelector('#main-canvas');
 const gCtx = gCanvas.getContext('2d');
 // const gTopTxtCanvas = document.querySelector('#top-txt-canvas');
@@ -14,14 +19,12 @@ function init() {
 
 function renderImages() {
     let images = getImages();
-    let strHtmls = images.map(function(image){
+    let strHtmls = images.map(function (image) {
         return `<div class="card" data-id="${image.id}" onclick="onPickImage(this)">
                     <img src="${image.url}">
                 </div>`
     })
     document.querySelector('.image-container').innerHTML = strHtmls.join('');
-    
-    
 }
 
 function resizeCanvas() {
@@ -48,11 +51,14 @@ function loadAndDrawImage(url) {
 }
 
 function drawTxt() {
+    let fontSize = '' + gFont.fontSize;
+    let fontFamily = gFont.fontFamily;
+    gCtx.font = fontSize + 'px ' + fontFamily;
+
     let userChoice = getMemeTxt();
     let txt = userChoice.line
-    console.log(userChoice);
-    console.log(txt);
-    gCtx.font = '40px Impact';
+    // console.log(userChoice);
+    // console.log(txt);
     gCtx.lineWidth = 2;
     gCtx.fillStyle = 'white';
     gCtx.fillText(txt, 100, 75);
@@ -66,20 +72,30 @@ function drawTxt() {
     // for bottom line -
 }
 
-function onChangeTxt(input){
+function onChangeTxt(input, ev) {
     var txtIdx;
     if (input.id === 'top-txt') txtIdx = 0;
     else if (input.id === 'bottom-txt') txtIdx = 1;
     let txt = input.value;
+    // console.log(ev.target.value);
+    // console.log(ev);
     changeTxt(txtIdx, txt);
     // drawTxt()
     createMeme();
 }
 
-function onPickImage(elImage){
+function onPickImage(elImage) {
     let imgId = elImage.dataset.id;
     changeImg(imgId);
     createMeme();
-    console.log(imgId);
-    
+    // console.log(imgId);    
 }
+
+function onChangeFontSize(elBtn) {
+    elBtn.classlist.contains
+    console.log('Changing font-size');
+}
+function onMoveLine(elBtn) {
+    console.log('Moving line');
+}
+
