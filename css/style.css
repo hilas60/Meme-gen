@@ -23,7 +23,7 @@ h1 {
     width: 50%;
 }
 
-#main-canvas {
+canvas {
     border: 1px solid black;
     margin: 0;
 }

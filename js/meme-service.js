@@ -3,7 +3,7 @@
 let gImgs = [{id: 1, url:'img/1.jpg'}, {id: 2, url:'img/2.jpg'}];
 let gMeme = {
     selectedImgId: 1, 
-    selectedTxtId: 1, 
+    selectedTxtIdx: 0, 
     txts: [
         {line: 'I love dogs',
          size: 1,
