@@ -1,3 +1,8 @@
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins/Poppins-Regular.ttf)
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,10 +10,11 @@
 html, body {
     height: 100vh;
     width: 100vw;
+    font-size: 1rem;
 }
 
 body {
-    background-color: blanchedalmond;
+    background-color: #22252c;
     margin: 5px;
     display: flex;
     flex-direction: column;
@@ -17,10 +23,8 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-}
-
-h1 {
-    color: red;
+    background-color: #5970c1;
+    background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
 }
 
 a {
@@ -33,14 +37,75 @@ img, button {
     cursor: pointer;
 }
 
+.logo {
+    color: #ffffff;
+    font-size: 2.75rem;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    margin: 3rem 3.5rem
+}
+
 .nav-bar {
     list-style: none;
     display: flex;
     justify-content: space-between;
+    padding: 0px;
 }
 
 .nav-bar li {
     padding: 10px;
+}
+
+/* .open-menu .screen {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.screen {
+    position: fixed;
+    left:0;
+    top: 0;
+    width: 100%;
+    height:100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    
+    transition: opacity .3s;
+} */
+
+.gallery-container {
+    background-color: #383b42;
+    margin: 1rem;
+    border-radius: 1rem;
+    display: flex;
+}
+
+.search-bar {
+    height: 2.5rem;
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.search-bar input {
+    padding: 1.5rem;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    background-color: #22252c;
+    border-width: 0;
+    border-style: none;
+    border-radius: 2rem;
+    position: relative;
+}
+
+.mag-glass-icon {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
 }
 
 .meme-gen {
@@ -50,30 +115,26 @@ img, button {
 }
 
 .canvas-container {
-    /* border: 1px solid black; */
     margin: 0;
     flex: 1;
     text-align: center;
-    /* position: relative; */
+    width: 100%;
+    padding: 10px;
 }
 
-/* .main-canvas-container {
-    position: absolute;
-} */
-
-/* .top-txt-canvas-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 30%;
-    width: 100%;
-    z-index: 3;
-} */
-
 .meme-controls-container {
-    padding: 20px; 
+    padding: 20px;
     flex: 1;
     text-align: center;
+    background-color: hsla(215, 19%, 78%, 0.11);
+    /* opacity: 0.11;  */
+    border-radius: 30px;
+    /* box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff; */
+}
+
+.font-controls {
+    background-color: #19a59f;
+    border-radius: 15px;
 }
 
 input {
@@ -82,28 +143,31 @@ input {
 }
 
 .image-gallery {
-    width: 100%
+    width: 100%;
+    text-align: center;
 }
 
 .image-container {
     display: flex;
-
+    justify-content: center;
 }
 
-.image-gallery img {
-    height: 150px;
-    width: 150px;
+.image-container img {
+    width: 100%;
+    border-radius: 5px;
 }
 
 .card {
-    margin: 10px;
+    width: 50%;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
 }
 
 .hide {
     display: none;
 }
 
-@media screen and (min-width: 700px){
+@media screen and (min-width: 700px) {
     .meme-gen {
         flex-direction: row;
         align-content: center;
@@ -111,7 +175,53 @@ input {
     }
 }
 
-@media screen and (min-width: 500px){
+@media screen and (min-width: 780px) {
+    .menu-btn {
+        display: none;
+    }
+}
 
-    
+@media screen and (max-width: 780px) {
+    .nav-bar {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100vh;
+        width: 150px;
+        border: 1px solid red;
+        position: fixed;
+        top: 0;
+        right: -150px;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 1;
+        margin: 0;
+        transition: right .6s;
+    }
+    .nav-bar.open-menu {
+        transition: right .6s;
+        right: 0;
+    }
+    /* .nav-bar li {
+        border-bottom: 1px solid rgba(153, 153, 153, 0.5);
+        width: 100%;
+    }
+    .nav-bar a {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .nav-bar a:hover {
+        background-color: rgba(204, 204, 204, 0.4);
+    } */
+    .menu-btn {
+        padding: 2rem;
+        padding-right: 2.5rem;
+        display: block;
+        transition: margin-right .6s;
+    }
+
+    .menu-btn.open-menu {
+        margin-right: 150px;
+        transition: margin-right .6s;
+
+    }
 }

@@ -1,5 +1,7 @@
 'use strict'
 
+const IMAGE_ID_KEY = 'image-Id'
+
 let gImgs = [{ id: 1, url: 'img/1.jpg' }, { id: 2, url: 'img/2.jpg' }];
 let gMeme = {
     selectedImgId: 1,
@@ -9,7 +11,7 @@ let gMeme = {
             line: 'Text 1',
             size: 2,
             align: 'center',
-            color: 'black',
+            color: 'white',
         },
         {
             line: 'Text 2',
@@ -21,8 +23,8 @@ let gMeme = {
 }
 
 function getImgUrl() {
-    let img = gImgs.find(function (img) {
-        return img.id === gMeme.selectedImgId;
+    let img = gImgs.find(function (image) {
+        return image.id === gMeme.selectedImgId;
     })
     return img.url;
 }
@@ -50,14 +52,28 @@ function switchLines() {
     } else {
         gMeme.selectedTxtIdx = 0;
     }
-    
+    return gMeme.txts[txtIdx];
     // (gMeme.selectedTxtIdx <  0 || gMeme.selectedTxtIdx > gMeme.txts.length-1)? gMeme.selectedTxtIdx = 0 : gMeme.selectedTxtIdx++;
 }
 
-function changeImg(imgId) {
-    gMeme.selectedImgId = +imgId;
+function changeImgId(imgId) {
+    console.log(imgId);
+    gMeme.selectedImgId = imgId;
+    saveImgIdToStorage()
+}
+
+function setSelectedImgId(){
+    gMeme.selectedImgId = loadImgIdFromStorage();
 }
 
 function getImages() {
     return gImgs;
+}
+
+function saveImgIdToStorage (){
+    saveToLocalStorage(IMAGE_ID_KEY, gMeme.selectedImgId);
+}
+
+function loadImgIdFromStorage(){
+    return +loadFromLocalStorage(IMAGE_ID_KEY);
 }

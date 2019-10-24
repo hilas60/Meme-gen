@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Meme-generator</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body onload="init()">
+        <header>
+            <h1 class="logo">logo</h1>
+            <button id="menu-btn" class="menu-btn" onclick="toggleMenu()"><img src="img/menu-btn.png"></button>
+            <ul class="nav-bar">
+                <li><a href="index.html">Gallery</a></li>
+                <li class="saved-memes hide"><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </header>
+        <main>
+            <div class="meme-gen">
+                <section class="canvas-container">
+                    <!-- <div class="main-canvas-container"> -->
+                    <canvas id="main-canvas" height="" width=""></canvas>
+                    <!-- </div> -->
+                    <!-- <div class="top-txt-canvas-container">
+                    <canvas id="top-txt-canvas"></canvas>
+                </div> -->
+                </section>
+                <section class="meme-controls-container">
+                    <form onsubmit="return false">
+                        <label for="txt-input" class="txt-input">Enter Text to line:</label></br></br>
+                        <input type="text" name="txt-box-input" class="txt-box-input" id="txt-box-input"
+                            placeholder="Enter text here" onkeyup="onChangeTxt(this, event)">
+                    </form></br>
+                    <button class="up-btn move-line-btn btn" onclick="onMoveLine(this)">Up</button>
+                    Move line
+                    <button class="down-btn move-line-btn btn" onclick="onMoveLine(this)">Down</button>
+                    </br></br>
+                    <button class="switch-btn btn" onclick="onSwitchLines()"><img
+                            src="img/switch-line-btn.png"></button>
+                    <button class="add-line-btn" id="add-line"><img src="img/add-line.png"></button>
+                    <button class="delete-line-btn" id="delete-line"><img src="img/delete-line.png"></button>
+                    <div class="font-controls">
+                        <button class="up-btn font-size-btn btn" onclick="onChangeFontSize(this)"><img
+                                src="img/bigger-font-btn.png"></button>
+                        <button class="down-btn font-size-btn btn" onclick="onChangeFontSize(this)"><img
+                                src="img/smaller-font-btn.png"></button>
+                        </br></br>
+                        <button class="align-btn" id="left" onclick="onAlign(this)"><img
+                                src="img/align-left-btn.png"></button>
+                        <button class="align-btn" id="center" onclick="onAlign(this)"><img
+                                src="img/align-center-btn.png"></button>
+                        <button class="align-btn" id="right" onclick="onAlign(this)"><img
+                                src="img/align-right-btn.png"></button>
+                        <label for="font-color">Font-color</label><input type="color" name="font-color">
+                    </div>
+                    <button class="share-btn" id="share">Share</button>
+                    <button class="download-btn" id="download">Download</button>
+
+                </section>
+            </div>
+        </main>
+        <script src="js/utilService.js"></script>
+        <script src="js/meme-service.js"></script>
+        <script src="js/editor-main.js"></script>
+        <!-- <script src="js/main.js"></script> -->
+    </body>
+
+</html>
