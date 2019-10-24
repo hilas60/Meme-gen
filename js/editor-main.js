@@ -1,16 +1,5 @@
 'use strict'
 
-const gTxt = {
-    fontFamily: 'Impact',
-    top: {
-        x: 0,
-        y: 0,
-    },
-    bottom: {
-        x: 0,
-        y: -10,
-    },
-}
 
 const gCanvas = document.querySelector('#main-canvas');
 const gCtx = gCanvas.getContext('2d');
@@ -19,91 +8,68 @@ const gCtx = gCanvas.getContext('2d');
 function init() {
     resizeCanvas(gCanvas);
     setSelectedImgId();
-    createMeme()
+    renderMeme()
 }
-
-
 
 function resizeCanvas(canvas) {
     var elContainer = document.querySelector('.canvas-container');
+    canvas.height = elContainer.offsetHeight;
     // canvas.width = elContainer.offsetWidth
     // let aspectRatio
-    canvas.height = elContainer.offsetHeight;
     // canvas.width = window.innerWidth
     // canvas.height = window.innerHeight
 }
 
-function createMeme() {
+function renderMeme(){
+    let meme = getMeme();
     var imgUrl = getImgUrl();
-    loadAndDrawImage(imgUrl);
-}
-
-
-function loadAndDrawImage(url) {
     var image = new Image();
     image.onload = function () {
-        // gCanvas.width = image.width;
-        // image.width=gCanvas.width;
-        // gCanvas.height = image.height;
-        // image.height = gCanvas.height;
+        // Draw Image and text
         gCtx.drawImage(image, 0, 0, gCanvas.width ,gCanvas.height );
-
-        let topTxt = gTxt.top
-        let bottomTxt = gTxt.bottom
-        let canWidth = gCanvas.width
-        let canHeight = gCanvas.height
-        drawTxt(0, canWidth/2 - topTxt.x, canHeight/4 + topTxt.y);
-        drawTxt(1, canWidth/2 - bottomTxt.x, canHeight + bottomTxt.y);
-        // drawTxt(2, canWidth/2 - middleTxt.x, canHeight/2 + middleTxt.y)); - middle line to be added
+        drawTxts();
     }
-    image.src = url;
+    image.src = imgUrl;
 }
 
-function drawTxt(txtIdx, x, y) {
-    let meme = getMeme();
-    let fontSize = '' + meme.txts[txtIdx].size;
-    let fontFamily = gTxt.fontFamily;
-    gCtx.font = fontSize + 'em ' + fontFamily;
-    gCtx.lineWidth = 2;
-    gCtx.textAlign = meme.txts[txtIdx].align;
-    gCtx.fillStyle = meme.txts[txtIdx].color;
-    gCtx.strokeStyle = 'black';
-
-    let txt = meme.txts[txtIdx].line
-    gCtx.fillText(txt, x, y);
-    gCtx.strokeText(txt, x, y);
+function drawTxts() {
+    let txts = getMeme().txts;
+    txts.forEach(function(txt){
+        let fontSize = '' + txt.size;
+        // let fontFamily = gTxt.fontFamily;
+        gCtx.font = fontSize + 'em impact';
+        gCtx.lineWidth = 2;
+        gCtx.textAlign = txt.align;
+        gCtx.fillStyle = txt.color;
+        gCtx.strokeStyle = 'black';
+        // let txtLine = txt[txtIdx].line
+        gCtx.fillText(txt.line, txt.x, txt.y);
+        gCtx.strokeText(txt.line, txt.x, txt.y);
+    })
 
 }
 
 function onChangeTxt(input) {
     let txt = input.value;
     changeTxt(txt);
-    createMeme();
+    renderMeme();
 }
-
-// function onPickImage(elImage) {
-//     createMeme();
-// }
 
 function onChangeFontSize(elBtn) {
     let fontChange = (elBtn.classList.contains('up-btn')) ? true : false;
     changeFontSize(fontChange);
-    createMeme();
+    renderMeme();
 }
 
 function onMoveLine(elBtn) {
-    let meme = getMeme();
-    let txtLine = meme.selectedTxtIdx;
-    let activeLine;
-    if (txtLine === 0) {
-        activeLine = gTxt.top;
-    } else if (txtLine === 1) {
-        activeLine = gTxt.bottom;
+    let direction
+    if (elBtn.classList.contains('up-btn')){
+        direction = 'up'
     } else {
-        activeLine = gTxt.middle;
+        direction = 'down'
     }
-    (elBtn.classList.contains('up-btn')) ? activeLine.y-- : activeLine.y++;
-    createMeme();
+    moveLine(direction)
+    renderMeme();
 }
 
 function onSwitchLines() {    
@@ -119,5 +85,19 @@ function toggleMenu() {
     elMenu.classList.toggle('open-menu');
     let elMenuBtn = document.querySelector('.menu-btn');
     elMenuBtn.classList.toggle('open-menu');
-    // document.body.classList.toggle('open-menu');
+}
+
+function onAlignTxt(elBtn){
+    setAlignTxt(elBtn.id);
+    renderMeme();
+}
+
+function onAddLine(params) {
+    console.log('Adding a line');
+}
+
+function onRemoveLine(params) {
+    console.log('Removing');
+    removeLine();
+    renderMeme();
 }

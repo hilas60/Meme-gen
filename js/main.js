@@ -15,7 +15,6 @@ function renderImages() {
 function onPickImage(elImage) {
     let imgId = +elImage.dataset.id;
     changeImgId(imgId);
-    // document.querySelector('.editor-link').classList.remove('hide');
     window.location.href = "editor.html";
 }
 
@@ -24,5 +23,5 @@ function toggleMenu() {
     elMenu.classList.toggle('open-menu');
     let elMenuBtn = document.querySelector('.menu-btn');
     elMenuBtn.classList.toggle('open-menu');
-    // document.body.classList.toggle('open-menu');
+    
 }

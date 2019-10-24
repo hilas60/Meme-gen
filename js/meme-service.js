@@ -12,12 +12,16 @@ let gMeme = {
             size: 2,
             align: 'center',
             color: 'white',
+            x: 100,
+            y: 100,
         },
         {
             line: 'Text 2',
             size: 2,
             align: 'center',
             color: 'red',
+            x: 100,
+            y: 350,
         }
     ],
 }
@@ -53,11 +57,9 @@ function switchLines() {
         gMeme.selectedTxtIdx = 0;
     }
     return gMeme.txts[txtIdx];
-    // (gMeme.selectedTxtIdx <  0 || gMeme.selectedTxtIdx > gMeme.txts.length-1)? gMeme.selectedTxtIdx = 0 : gMeme.selectedTxtIdx++;
 }
 
 function changeImgId(imgId) {
-    console.log(imgId);
     gMeme.selectedImgId = imgId;
     saveImgIdToStorage()
 }
@@ -76,4 +78,19 @@ function saveImgIdToStorage (){
 
 function loadImgIdFromStorage(){
     return +loadFromLocalStorage(IMAGE_ID_KEY);
+}
+
+function setAlignTxt(alignment){
+    let txtIdx = gMeme.selectedTxtIdx
+    gMeme.txts[txtIdx].align = alignment;
+}
+
+function removeLine() {
+    var txtIdx = gMeme.selectedTxtIdx;
+    gMeme.txts.splice(txtIdx, 1);
+}
+
+function moveLine(direction) {
+    let txtIdx = gMeme.selectedTxtIdx;
+    (direction === 'up')? gMeme.txts[txtIdx].y-- : gMeme.txts[txtIdx].y++;
 }

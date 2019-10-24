@@ -56,26 +56,6 @@ img, button {
     padding: 10px;
 }
 
-/* .open-menu .screen {
-    visibility: visible;
-    opacity: 1;
-}
-
-
-.screen {
-    position: fixed;
-    left:0;
-    top: 0;
-    width: 100%;
-    height:100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    visibility: hidden;
-    opacity: 0;
-    
-    transition: opacity .3s;
-} */
-
 .gallery-container {
     background-color: #383b42;
     margin: 1rem;
@@ -127,9 +107,7 @@ img, button {
     flex: 1;
     text-align: center;
     background-color: hsla(215, 19%, 78%, 0.11);
-    /* opacity: 0.11;  */
     border-radius: 30px;
-    /* box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff; */
 }
 
 .font-controls {
@@ -200,18 +178,7 @@ input {
         transition: right .6s;
         right: 0;
     }
-    /* .nav-bar li {
-        border-bottom: 1px solid rgba(153, 153, 153, 0.5);
-        width: 100%;
-    }
-    .nav-bar a {
-        display: block;
-        text-align: center;
-        padding: 10px 0;
-    }
-    .nav-bar a:hover {
-        background-color: rgba(204, 204, 204, 0.4);
-    } */
+    
     .menu-btn {
         padding: 2rem;
         padding-right: 2.5rem;

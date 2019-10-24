@@ -22,12 +22,7 @@
         <main>
             <div class="meme-gen">
                 <section class="canvas-container">
-                    <!-- <div class="main-canvas-container"> -->
                     <canvas id="main-canvas" height="" width=""></canvas>
-                    <!-- </div> -->
-                    <!-- <div class="top-txt-canvas-container">
-                    <canvas id="top-txt-canvas"></canvas>
-                </div> -->
                 </section>
                 <section class="meme-controls-container">
                     <form onsubmit="return false">
@@ -41,19 +36,19 @@
                     </br></br>
                     <button class="switch-btn btn" onclick="onSwitchLines()"><img
                             src="img/switch-line-btn.png"></button>
-                    <button class="add-line-btn" id="add-line"><img src="img/add-line.png"></button>
-                    <button class="delete-line-btn" id="delete-line"><img src="img/delete-line.png"></button>
+                    <button class="add-line-btn" id="add-line" onclick="onAddLine()"><img src="img/add-line.png"></button>
+                    <button class="delete-line-btn" id="delete-line" onclick="onRemoveLine()"><img src="img/delete-line.png"></button>
                     <div class="font-controls">
                         <button class="up-btn font-size-btn btn" onclick="onChangeFontSize(this)"><img
                                 src="img/bigger-font-btn.png"></button>
                         <button class="down-btn font-size-btn btn" onclick="onChangeFontSize(this)"><img
                                 src="img/smaller-font-btn.png"></button>
                         </br></br>
-                        <button class="align-btn" id="left" onclick="onAlign(this)"><img
+                        <button class="align-btn" id="left" onclick="onAlignTxt(this)"><img
                                 src="img/align-left-btn.png"></button>
-                        <button class="align-btn" id="center" onclick="onAlign(this)"><img
+                        <button class="align-btn" id="center" onclick="onAlignTxt(this)"><img
                                 src="img/align-center-btn.png"></button>
-                        <button class="align-btn" id="right" onclick="onAlign(this)"><img
+                        <button class="align-btn" id="right" onclick="onAlignTxt(this)"><img
                                 src="img/align-right-btn.png"></button>
                         <label for="font-color">Font-color</label><input type="color" name="font-color">
                     </div>
@@ -66,7 +61,6 @@
         <script src="js/utilService.js"></script>
         <script src="js/meme-service.js"></script>
         <script src="js/editor-main.js"></script>
-        <!-- <script src="js/main.js"></script> -->
     </body>
 
 </html>
