@@ -1,24 +1,28 @@
 'use strict'
 
 const gTxt = {
-    fontSize: 40,
     fontFamily: 'Impact',
-    xTop: 100,
-    yTop: 75,
-    // xBottom: 100,
-    // yBottom: 75,
+    top: {
+        x: 0,
+        y: 0,
+    },
+    bottom: {
+        x: 0,
+        y: -10,
+    },
 }
 
 const gCanvas = document.querySelector('#main-canvas');
 const gCtx = gCanvas.getContext('2d');
-const gTopTxtCanvas = document.querySelector('#top-txt-canvas');
-const gTopTxtCtx = gTopTxtCanvas.getContext('2d');
+// in case another canvas will be added -
+// const gTopTxtCanvas = document.querySelector('#top-txt-canvas');
+// const gTopTxtCtx = gTopTxtCanvas.getContext('2d');
 
 
 function init() {
     renderImages()
     resizeCanvas(gCanvas);
-    resizeCanvas(gTopTxtCanvas);
+    // resizeCanvas(gTopTxtCanvas);
     createMeme()
 }
 
@@ -33,12 +37,7 @@ function renderImages() {
 }
 
 function resizeCanvas(canvas) {
-    var elContainer;
-    if (canvas === gCanvas) {
-        elContainer = document.querySelector('.main-canvas-container');
-    } else if (canvas === gTopTxtCanvas){
-        elContainer = document.querySelector('.top-txt-canvas-container')
-    }
+    var elContainer = document.querySelector('.canvas-container');
     canvas.width = elContainer.offsetWidth
     canvas.height = elContainer.offsetHeight
 }
@@ -55,38 +54,37 @@ function loadAndDrawImage(url) {
         gCanvas.width = image.width;
         gCanvas.height = image.height;
         gCtx.drawImage(image, 0, 0);
-        drawTxt();
+        
+        let topTxt = gTxt.top
+        let bottomTxt = gTxt.bottom
+        let canWidth = gCanvas.width
+        let canHeight = gCanvas.height
+        drawTxt(0, canWidth/2 - topTxt.x, canHeight/4 + topTxt.y);
+        drawTxt(1, canWidth/2 - bottomTxt.x, canHeight + bottomTxt.y);
+        // drawTxt(2, canWidth/2 - middleTxt.x, canHeight/2 + middleTxt.y)); - middle line to be added
     }
     image.src = url;
 }
 
-function drawTxt() {
-    let fontSize = '' + gTxt.fontSize;
+function drawTxt(txtIdx, x, y) {
+    let meme = getMeme();
+    let fontSize = '' + meme.txts[txtIdx].size;
     let fontFamily = gTxt.fontFamily;
-    gCtx.font = fontSize + 'px ' + fontFamily;
+    gCtx.font = fontSize + 'em ' + fontFamily;
     gCtx.lineWidth = 2;
-    gCtx.fillStyle = 'white';
+    gCtx.textAlign = meme.txts[txtIdx].align;
+    gCtx.fillStyle = meme.txts[txtIdx].color;
     gCtx.strokeStyle = 'black';
-    
-    let x = gTxt.xTop
-    let y = gTxt.yTop
 
-    let userChoice = getMemeTxt();
-    let txt = userChoice.line
-    
+    let txt = meme.txts[txtIdx].line
     gCtx.fillText(txt, x, y);
     gCtx.strokeText(txt, x, y);
 
 }
 
-function onChangeTxt(input, ev) {
-    var txtIdx;
-    if (input.id === 'top-txt') txtIdx = 0;
-    else if (input.id === 'bottom-txt') txtIdx = 1;
+function onChangeTxt(input) {
     let txt = input.value;
-    // console.log(ev.target.value);
-    // console.log(ev);
-    changeTxt(txtIdx, txt);
+    changeTxt(txt);
     createMeme();
 }
 
@@ -94,18 +92,30 @@ function onPickImage(elImage) {
     let imgId = elImage.dataset.id;
     changeImg(imgId);
     createMeme();
-    // console.log(imgId);    
 }
 
 function onChangeFontSize(elBtn) {
-    (elBtn.classList.contains('up-btn')) ? gTxt.fontSize++ : gTxt.fontSize-- ;
+    let fontChange = (elBtn.classList.contains('up-btn')) ? true : false;
+    changeFontSize(fontChange);
     createMeme();
-    // console.log('Changing font-size');
 }
 
 function onMoveLine(elBtn) {
-    (elBtn.classList.contains('up-btn')) ? gTxt.yTop-- : gTxt.yTop++ ;
+    let meme = getMeme();
+    let txtLine = meme.selectedTxtIdx;
+    let activeLine;
+    if (txtLine === 0) {
+        activeLine = gTxt.top;
+    } else if (txtLine === 1) {
+        activeLine = gTxt.bottom;
+    } else {
+        activeLine = gTxt.middle;
+    }
+    (elBtn.classList.contains('up-btn')) ? activeLine.y-- : activeLine.y++;
     createMeme();
-    // console.log('Moving line');
 }
 
+function onSwitchLines() {
+    // ADD WHICH LINE IS FOCUSED
+    switchLines();
+}

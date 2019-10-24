@@ -18,28 +18,38 @@
                 <li><a href="#">About</a></li>
             </ul>
         </header>
-        <div class="meme-gen">
-            <section class="canvas-container">
-                <div class="main-canvas-container">
+        <main>
+            <div class="meme-gen">
+                <section class="canvas-container">
+                    <!-- <div class="main-canvas-container"> -->
                     <canvas id="main-canvas" height="" width=""></canvas>
-                </div>
-                <div class="top-txt-canvas-container">
+                    <!-- </div> -->
+                    <!-- <div class="top-txt-canvas-container">
                     <canvas id="top-txt-canvas"></canvas>
-                </div>
+                </div> -->
+                </section>
+                <section class="meme-controls-container">
+                    <form onsubmit="return false">
+                        <label for="txt-input" class="txt-box">Enter Text to line:</label></br></br>
+                        <input type="text" name="txt-input" class="txt-box" id="txt-input" placeholder="Enter text here"
+                            onkeyup="onChangeTxt(this, event)">
+                        <!-- <label for="bottom-txt" class="txt-box hide">Enter Text to Bottom line:</label></br></br>
+                        <input type="text" name="bottom-txt" class="txt-box hide" id="bottom-txt"
+                            placeholder="Enter text here" onkeyup="onChangeTxt(this, event)"> -->
+                    </form></br>
+                    <button class="up-btn font-size-btn btn" onclick="onChangeFontSize(this)">A+</button>Font
+                    size<button class="down-btn font-size-btn btn"
+                        onclick="onChangeFontSize(this)">A-</button></br></br>
+                    <button class="up-btn move-line-btn btn" onclick="onMoveLine(this)">Up</button>Move line<button
+                        class="down-btn move-line-btn btn" onclick="onMoveLine(this)">Down</button></br></br>
+                    <button class="switch-btn btn" onclick="onSwitchLines()">Switch Lines</button>
+                </section>
+            </div>
+            <section class="image-gallery">
+                <h2>Image Gallery</h2>
+                <div class="image-container"></div>
             </section>
-            <section class="meme-controls-container">
-                <form onsubmit="return false">
-                    <label for="top-txt">Enter Text to top line:</label></br></br>
-                    <input type="text" name="top-txt" id="top-txt" placeholder="Enter text here" onkeyup="onChangeTxt(this, event)">
-                </form></br>
-                <button class="up-btn font-size-btn btn" onclick="onChangeFontSize(this)">A+</button>Font size<button class="down-btn font-size-btn btn" onclick="onChangeFontSize(this)">A-</button></br></br>
-                <button class="up-btn move-line-btn btn" onclick="onMoveLine(this)">Up</button>Move line<button class="down-btn move-line-btn btn" onclick="onMoveLine(this)">Down</button>
-            </section>
-        </div>
-        <section class="image-gallery">
-            <h2>Image Gallery</h2>
-            <div class="image-container"></div>
-        </section>
+        </main>
         <script src="js/meme-service.js"></script>
         <script src="js/main.js"></script>
     </body>
