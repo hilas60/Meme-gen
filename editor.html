@@ -12,52 +12,75 @@
     <body onload="init()">
         <header>
             <h1 class="logo">logo</h1>
-            <button id="menu-btn" class="menu-btn" onclick="toggleMenu()"><img src="img/menu-btn.png"></button>
+            <img src="img/icons/menu-btn.png" id="menu-btn" class="menu-btn btn" onclick="toggleMenu()">
             <ul class="nav-bar">
                 <li><a href="index.html">Gallery</a></li>
                 <li class="saved-memes hide"><a href="#">Memes</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </header>
-        <main>
-            <div class="meme-gen">
-                <section class="canvas-container">
-                    <canvas id="main-canvas" height="" width=""></canvas>
-                </section>
-                <section class="meme-controls-container">
-                    <form onsubmit="return false">
-                        <label for="txt-input" class="txt-input">Enter Text to line:</label></br></br>
-                        <input type="text" name="txt-box-input" class="txt-box-input" id="txt-box-input"
-                            placeholder="Enter text here" onkeyup="onChangeTxt(this, event)">
-                    </form></br>
-                    <button class="up-btn move-line-btn btn" onclick="onMoveLine(this)">Up</button>
-                    Move line
-                    <button class="down-btn move-line-btn btn" onclick="onMoveLine(this)">Down</button>
-                    </br></br>
+        <main class="meme-gen">
+            <section class="canvas-container">
+                <canvas id="main-canvas" width="500" height="500"></canvas>
+            </section>
+            <section class="meme-controls-container">
+                <input type="text" name="txt-box-input" class="txt-box-input" id="txt-box-input"
+                    placeholder="Enter text here" onkeyup="onChangeTxt(this, event)">
+                <div class="manage-line">
                     <button class="switch-btn btn" onclick="onSwitchLines()"><img
-                            src="img/switch-line-btn.png"></button>
-                    <button class="add-line-btn" id="add-line" onclick="onAddLine()"><img src="img/add-line.png"></button>
-                    <button class="delete-line-btn" id="delete-line" onclick="onRemoveLine()"><img src="img/delete-line.png"></button>
-                    <div class="font-controls">
-                        <button class="up-btn font-size-btn btn" onclick="onChangeFontSize(this)"><img
-                                src="img/bigger-font-btn.png"></button>
-                        <button class="down-btn font-size-btn btn" onclick="onChangeFontSize(this)"><img
-                                src="img/smaller-font-btn.png"></button>
-                        </br></br>
-                        <button class="align-btn" id="left" onclick="onAlignTxt(this)"><img
-                                src="img/align-left-btn.png"></button>
-                        <button class="align-btn" id="center" onclick="onAlignTxt(this)"><img
-                                src="img/align-center-btn.png"></button>
-                        <button class="align-btn" id="right" onclick="onAlignTxt(this)"><img
-                                src="img/align-right-btn.png"></button>
-                        <label for="font-color">Font-color</label><input type="color" name="font-color">
+                            src="img/icons/switch-line-btn.png"></button>
+                    <button class="add-line-btn btn" id="add-line" onclick="onAddLine()"><img
+                            src="img/icons/add-line-btn.png"></button>
+                    <button class="delete-line-btn btn" id="delete-line" onclick="onRemoveLine()"><img
+                            src="img/icons/delete-line-btn.png"></button>
+                </div>
+                <div class="font-controls">
+                    <div class="font-controls-top">
+                        <button class="up-btn font-size-btn btn" onclick="onChangeFontSize(this)">
+                            <img src="img/icons/bigger-font-btn.png">
+                        </button>
+                        <button class="down-btn font-size-btn btn" onclick="onChangeFontSize(this)">
+                            <img src="img/icons/smaller-font-btn.png">
+                        </button>
+                        <button class="up-btn move-line-btn btn" onclick="onMoveLine(this)">&#8593</button>
+                        <button class="down-btn move-line-btn btn" onclick="onMoveLine(this)">&#8595</button>
                     </div>
-                    <button class="share-btn" id="share">Share</button>
-                    <button class="download-btn" id="download">Download</button>
-
+                    <div class="font-controls-bottom">
+                        <button class="align-btn" id="left" onclick="onAlignTxt(this)">
+                            <img src="img/icons/align-left-icon.png"></button>
+                        <button class="align-btn" id="center" onclick="onAlignTxt(this)">
+                            <img src="img/icons/align-center-icon.png"></button>
+                        <button class="align-btn" id="right" onclick="onAlignTxt(this)">
+                            <img src="img/icons/align-right-icon.png"></button>
+                        <button class="font-color-btn">
+                            <label for="font-color"><img src="img/icons/color-icon.png"></label>
+                            <input type="color" name="font-color" id="font-color" hidden>
+                        </button>
+                    </div>
+                </div>
+                <section class="file-handle-container">
+                    <!-- Need to fix facebook share link -->
+                    <button class="share-btn" id="share" onclick="onShareMeme(this)">
+                        <a href="http://www.facebook.com/share.php?u=" onClick="return onShareMeme(500, 300)" target="_blank" title="Share This on Facebook">
+                            <img src="img/icons/share-btn.png" alt="facebook share">
+                        </a>
+                    </button>
+                    <!-- <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button class="btn" type="submit"><img src="img/icons/share-btn.png" alt="facebook share"></button>
+                        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+                        <div class="share-container"></div>
+                      </form> -->
+                    <a href="#" class="download-btn" id="download" onclick="onDownloadMeme(this)"
+                        download="my-img.jpg"><img src="img/icons/download-btn.png"></a>
+                    <input class="file-input btn" type="file" name="image" onchange="onImgInput(event)" />
                 </section>
-            </div>
+            </section>
         </main>
+
+        <script type="text/javascript">
+
+        </script>
         <script src="js/utilService.js"></script>
         <script src="js/meme-service.js"></script>
         <script src="js/editor-main.js"></script>
